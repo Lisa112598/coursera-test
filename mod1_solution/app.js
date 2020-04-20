@@ -6,33 +6,34 @@ angular.module('LunchCheck', [])
 
 LunchCheckController.$inject = ['$scope'];
 function LunchCheckController($scope) {
-  $scope.dishes = "";
-  $scope.message = "";
-
-
-  $scope.lunchCheck = function () {
-    $scope.message = calculateDishes($scope.dishes);
-
+  $scope.checkDishes = function () {
+    var num = countDishes($scope.dishes);
+    $scope.message = buildMessage(num);
   };
 
-  function calculateDishes(string){
-    var ans = "";
-    var words ="";
-    words = string.split(',');
-
-    if(words.length<=3){
-      ans = "Enjoy!";
+  function countDishes(dishes) {
+    var count = 0;
+    if (dishes) {
+      var array = dishes.split(',');
+      for (var idx in array) {
+        if (array[idx].trim().length != 0) {
+          count++;
+        }
+      }
     }
-    else if(words.length>3){
-      ans = "Too much!";
-    }
-    else{
-      ans = "Please enter data first";
-    }
-
-    return ans;
+    return count;
   }
 
+  function buildMessage(num) {
+    if (num === 0) {
+      return 'Please enter data first';
+    }
+    else if (num <= 3) {
+      return 'Enjoy!';
+    } else {
+      return 'Too much!';
+    }
+  }
 }
 
 })();
