@@ -1,16 +1,25 @@
-<!<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html ng-app='MsgApp'>
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <style> body { font-size: 1.2em; }</style>
+    <title>Filters</title>
   </head>
   <body>
-    <h1>Hello Coursera</h1>
+    <h1>Filters</h1>
+    <div ng-controller='MsgController'>
+      {{name}} has a message for you: <br>
+    Original:  {{sayMessage()}}  <br>
+    New:   {{sayLovesMessage()}}
+      <div>
+        <button ng-click="feedYaakov()">Feed Yaakov</button>
+        Cost: {{ cookieCost | currency : "#blah" : 4 }}
+        <br>
 
-
-
-    <!-- <script id="__bs_script__">//<![CDATA[
-    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
-//]]></script> -->
+        <img ng-src="images/yaakov_{{stateOfBeing}}.png">
+      </div>
+    </div>
   </body>
 </html>
